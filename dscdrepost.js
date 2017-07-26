@@ -85,7 +85,7 @@ let file = program.args[0] || null
 let channelID = program.args[1] || null
 let messages = program.args[2] || null
 let client = new Client()
-let config = require(program.config || './config.json')
+let config = loadJSON(program.config || './config.json')
 let meta = null
 
 if (program.token) {
