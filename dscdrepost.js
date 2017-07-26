@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * dscdrepost.js
  * Discord Repost
