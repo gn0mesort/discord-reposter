@@ -11,7 +11,7 @@ const program = require('commander')
 const { loadJSON, Parser, Message } = require('./index.js')
 
 program
-  .version('1.0.0')
+  .version(require('./package.json').version)
   .usage('[options] FILE_NAME CHANNEL_ID')
   .description('List Discord messages from a parseable archive.')
   .option('--during <time>', 'Search for posts during the given day.')

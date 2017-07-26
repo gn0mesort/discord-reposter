@@ -58,7 +58,7 @@ function login (client, token) {
 }
 
 program
-  .version('1.0.0')
+  .version(require('./package.json').version)
   .usage('[options] FILE_NAME CHANNEL_ID MESSAGE_IDS')
   .description('Repost Discord messages from a parseable archive.')
   .option('-t, --token <token>', 'Specifies a user token to use with Discord. Overrides the config file.')
