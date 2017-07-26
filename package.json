@@ -16,7 +16,7 @@
     "uws": "^8.14.0"
   },
   "bin": {
-    "dscdrepost": "dscdrepost.js",
-    "dscdls": "dscdls.js"
+    "dscdrepost": "./dscdrepost.js",
+    "dscdls": "./dscdls.js"
   }
 }
