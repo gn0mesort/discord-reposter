@@ -19,7 +19,7 @@ module.exports = {
         r[channelID][messageID] = new Message(messageID, data.meta.userindex[record.u], record.m, record.t)
         if ('a' in record) {
           for (let attachment of record.a) {
-            r[channelID][messageID].attachments.push(attachment)
+            r[channelID][messageID].attachments.push(attachment.url)
           }
         }
       }

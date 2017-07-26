@@ -76,8 +76,17 @@ if (program.pipe) {
       delete data[message]
     }
   }
-  data = `${file};${channelID};${Object.keys(data).join(',')}`
+  console.log(`${file};${channelID};${Object.keys(data).join(',')}`)
+} else {
+  for (let key of Object.keys(data).sort((a, b) => {
+    if (data[a].time > data[b].time) {
+      return 1
+    } else if (data[a].time < data[b]) {
+      return -1
+    } else {
+      return 0
+    }
+  })) {
+    console.log(data[key])
+  }
 }
-
-console.log(data)
-

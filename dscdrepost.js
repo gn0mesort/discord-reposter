@@ -36,9 +36,17 @@ function repost (messages, meta, client, config) {
   let r = []
   let channel = client.guilds.get(config.server).channels.get(config.channel)
   if (channel.type !== 'voice') {
-    for (let id in messages) {
-      let content = `${meta ? acquireMetadata(messages[id], meta, client) + '\n' : ''}${messages[id].content}`
-      for (let attachment of messages[id].attachments) {
+    for (let key of Object.keys(messages).sort((a, b) => {
+      if (messages[a].time > messages[b].time) {
+        return 1
+      } else if (messages[a].time < messages[b]) {
+        return -1
+      } else {
+        return 0
+      }
+    })) {
+      let content = `${meta ? acquireMetadata(messages[key], meta, client) + '\n' : ''}${messages[key].content}`
+      for (let attachment of messages[key].attachments) {
         content += `\n${attachment}`
       }
       r.push(channel.send(content, {
@@ -104,11 +112,19 @@ client.once('ready', () => {
       delete data[message]
     }
   }
-  for (let message in data) {
-    if (program.verbose) {
-      verboseLog(data[message], meta, client)
+  for (let key of Object.keys(data).sort((a, b) => {
+    if (data[a].time > data[b].time) {
+      return 1
+    } else if (data[a].time < data[b]) {
+      return -1
     } else {
-      log(data[message])
+      return 0
+    }
+  })) {
+    if (program.verbose) {
+      verboseLog(data[key], meta, client)
+    } else {
+      log(data[key])
     }
   }
   if (!program.yes) {
