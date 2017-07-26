@@ -1,5 +1,5 @@
 /**
- * dscls.js
+ * dscdls.js
  * Discord ls
  *
  * List Discord messages from a parseable archive and optionally output dscrepost command line args
@@ -12,10 +12,10 @@ program
   .version('1.0.0')
   .usage('[options] FILE_NAME CHANNEL_ID')
   .description('List Discord messages from a parseable archive.')
-  .option('--during <n>', 'Search for posts during the given day.')
-  .option('--before <n>', 'Search for posts before the given time.')
-  .option('--after <n>', 'Search for posts after the given time.')
-  .option('--from <s>', 'Search for posts by a specific user.')
+  .option('--during <time>', 'Search for posts during the given day.')
+  .option('--before <time>', 'Search for posts before the given time.')
+  .option('--after <time>', 'Search for posts after the given time.')
+  .option('--from <userid>', 'Search for posts by a specific user.')
   .option('--attachment', 'Search for posts that have attachments')
   .option('-p, --pipe', 'Generate output to be piped into dscrepost.')
   .parse(process.argv)
@@ -66,7 +66,12 @@ if (program.attachment) {
   }
 }
 if (program.pipe) {
-
+  for (let message in data) {
+    if (!(data[message] instanceof Message)) {
+      delete data[message]
+    }
+  }
+  data = `${file};${channelID};${Object.keys(data).join(',')}`
 }
 
 console.log(data)

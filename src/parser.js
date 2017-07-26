@@ -62,7 +62,7 @@ class Parser {
     let r = {}
     if (fs.statSync(path).isDirectory()) {
       let modules = fs.readdirSync(path).filter((elem) => {
-        return elem.match(/.*\.js/g)
+        return elem.match(/.+\.js/g)
       })
       for (let loadModule of modules) {
         Object.assign(r, require(`${path}/${loadModule}`))
