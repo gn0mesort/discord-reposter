@@ -70,6 +70,9 @@ program
   .option('--config <config_file>', 'Force the usage of a specific configuration file', /^.+\.(?:js|json)$/)
   .parse(process.argv)
 
+if (program.args.length < 3 && process.stdin.isTTY) {
+  program.help()
+}
 let file = program.args[0] || null
 let channelID = program.args[1] || null
 let messages = program.args[2] || null
@@ -136,6 +139,9 @@ if (!process.stdin.isTTY) {
   let args = []
   getStdin().then((str) => {
     args = str.trim().split(';')
+    if (args.length < 3) {
+      program.help()
+    }
     file = args[0]
     channelID = args[1]
     messages = args[2]

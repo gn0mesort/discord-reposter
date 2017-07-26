@@ -22,6 +22,9 @@ program
   .option('-p, --pipe', 'Generate output to be piped into dscrepost.')
   .parse(process.argv)
 
+if (program.args.length < 2) {
+  program.help()
+}
 let file = program.args[0]
 let channelID = program.args[1]
 let data = Parser.parse(loadJSON(file))[channelID]
