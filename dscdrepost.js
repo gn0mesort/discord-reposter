@@ -120,6 +120,11 @@ client.once('ready', () => {
             process.exit(0)
           })
         })
+      } else {
+        client.destroy().then(() => {
+          rl.close()
+          process.exit(0)
+        })
       }
     })
   } else {
