@@ -78,6 +78,8 @@ if (program.pipe) {
   }
   console.log(`${file};${channelID};${Object.keys(data).join(',')}`)
 } else {
+  delete data.server
+  delete data.name
   for (let key of Object.keys(data).sort((a, b) => {
     if (data[a].time > data[b].time) {
       return 1
