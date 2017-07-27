@@ -81,9 +81,9 @@ if (program.pipe) {
   delete data.server
   delete data.name
   for (let key of Object.keys(data).sort((a, b) => {
-    if (data[a].time > data[b].time) {
+    if (Number(a) > Number(b)) {
       return 1
-    } else if (data[a].time < data[b]) {
+    } else if (Number(a) < Number(b)) {
       return -1
     } else {
       return 0

@@ -37,9 +37,9 @@ function repost (messages, meta, client, config) {
   let channel = client.guilds.get(config.server).channels.get(config.channel)
   if (channel.type !== 'voice') {
     for (let key of Object.keys(messages).sort((a, b) => {
-      if (messages[a].time > messages[b].time) {
+      if (Number(a) > Number(b)) {
         return 1
-      } else if (messages[a].time < messages[b]) {
+      } else if (Number(a) < Number(b)) {
         return -1
       } else {
         return 0
@@ -113,9 +113,9 @@ client.once('ready', () => {
     }
   }
   for (let key of Object.keys(data).sort((a, b) => {
-    if (data[a].time > data[b].time) {
+    if (Number(a) > Number(b)) {
       return 1
-    } else if (data[a].time < data[b]) {
+    } else if (Number(a) < Number(b)) {
       return -1
     } else {
       return 0
