@@ -4,7 +4,7 @@ const { Parser } = require('../parser.js')
 const { Message } = require('../message.js')
 
 module.exports = {
-  'saah': new Parser((data) => {
+  'sarah': new Parser((data) => {
     let r = {}
     for (let timestamp in data) {
       let record = data[timestamp]
