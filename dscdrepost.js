@@ -7,10 +7,11 @@
  * Repost specified Discord messages from a parseable archive
  */
 
+const path = require('path')
 const program = require('commander')
 const { Client } = require('discord.js')
 const getStdin = require('get-stdin')
-const { loadJSON, Parser, Message } = require('./index.js')
+const { loadJSON, Parser, Message } = require(path.join(__dirname, 'index.js'))
 const readline = require('readline')
 
 function acquireMetadata (message, meta, client) {
@@ -85,7 +86,7 @@ let file = program.args[0] || null
 let channelID = program.args[1] || null
 let messages = program.args[2] || null
 let client = new Client()
-let config = loadJSON(program.config || './config.json')
+let config = loadJSON(program.config || path.join(__dirname, 'config.json'))
 let meta = null
 
 if (program.token) {

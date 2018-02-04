@@ -19,7 +19,7 @@ program
   .option('--after <time>', 'Search for posts after the given time.')
   .option('--from <userid>', 'Search for posts by a specific user.')
   .option('--attachment', 'Search for posts that have attachments')
-  .option('-p, --pipe', 'Generate output to be piped into dscrepost.')
+  .option('-p, --pipe', 'Generate output to be piped into dscdrepost.')
   .parse(process.argv)
 
 if (program.args.length < 2) {
